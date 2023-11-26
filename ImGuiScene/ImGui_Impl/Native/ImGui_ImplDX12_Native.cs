@@ -188,8 +188,9 @@ namespace ImGuiScene.ImGui_Impl.Native {
                 return;
 
             this._fence.SetEventOnCompletion(fenceValue, this._fenceEvent);
+            // Try waiting a half a second?
             // TODO: I'm not sure if we should wait infinitely here as sometimes the game can crash and not render any more frames meaning this deadlocks.
-            WaitForSingleObject(this._fenceEvent, INFINITE);
+            WaitForSingleObject(this._fenceEvent, 500);
         }
 
         private void CreateFontsTexture() {
